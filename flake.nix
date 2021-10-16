@@ -5,11 +5,8 @@
     nixpkgs.url = "nixpkgs/nixos-unstable";
   };
 
-  outputs = { self , nixpkgs }:
+  outputs = { self, nixpkgs }:
     let
-
-      # Generate a user-friendly version numer
-      version = "${builtins.substring 0 8 self.lastModifiedDate}-${self.shortRev or "dirty"}";
 
       # System types to support
       supportedSystems = [ "x86_64-linux" ];
@@ -24,10 +21,10 @@
           (final: prev: {
             python3 = prev.python3.override {
               packageOverrides = final': prev': {
-                python3-msrplib = final'.callPackage ./python3-msrplib.nix {};
-                python3-otr = final'.callPackage ./python3-otr.nix {};
-                python3-sipsimple = final'.callPackage ./python3-sipsimple.nix {};
-                python3-xcaplib = final'.callPackage ./python3-xcaplib.nix {};
+                python3-msrplib = final'.callPackage ./deps/python3-msrplib.nix {};
+                python3-otr = final'.callPackage ./deps/python3-otr.nix {};
+                python3-sipsimple = final'.callPackage ./deps/python3-sipsimple.nix {};
+                python3-xcaplib = final'.callPackage ./deps/python3-xcaplib.nix {};
               };
             };
           })
