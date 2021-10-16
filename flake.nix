@@ -1,5 +1,5 @@
 {
-  description = "";
+  description = "Fully featured, easy to use SIP client with a Qt based UI";
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
