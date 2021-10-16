@@ -38,7 +38,7 @@
         };
       };
 
-      # The package built against the specified Nixpkgs version
+      # The packages built against the specified Nixpkgs version
       packages = forAttrs nixpkgsBySystem (_: pkgs: {
         inherit (pkgs) blink sipclients3;
       });
