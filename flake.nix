@@ -17,29 +17,25 @@
       # Nixpkgs instantiated for supported system types with package overlaid
       nixpkgsBySystem = forAllSystems (system: import nixpkgs {
         inherit system;
-        overlays = [
-          (final: prev: {
-            python3 = prev.python3.override {
-              packageOverrides = final': prev': {
-                python3-msrplib = final'.callPackage ./deps/python3-msrplib.nix {};
-                python3-otr = final'.callPackage ./deps/python3-otr.nix {};
-                python3-sipsimple = final'.callPackage ./deps/python3-sipsimple.nix {};
-                python3-xcaplib = final'.callPackage ./deps/python3-xcaplib.nix {};
-              };
-            };
-          })
-          self.overlay
-        ];
+        overlays = [ self.overlay ];
       });
 
       forAttrs = attrs: f: nixpkgs.lib.mapAttrs f attrs;
 
     in {
 
-      # A Nixpkgs overlay that adds the package
+      # A Nixpkgs overlay that adds the packages
       overlay = final: prev: {
         blink = final.libsForQt5.callPackage ./blink.nix {};
         sipclients3 = final.callPackage ./sipclients3.nix {};
+        python3 = prev.python3.override {
+          packageOverrides = final': prev': {
+            python3-msrplib = final'.callPackage ./deps/python3-msrplib.nix {};
+            python3-otr = final'.callPackage ./deps/python3-otr.nix {};
+            python3-sipsimple = final'.callPackage ./deps/python3-sipsimple.nix {};
+            python3-xcaplib = final'.callPackage ./deps/python3-xcaplib.nix {};
+          };
+        };
       };
 
       # The package built against the specified Nixpkgs version
