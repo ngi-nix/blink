@@ -2,7 +2,7 @@
   description = "Fully featured, easy to use SIP client with a Qt based UI";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.05";
   };
 
   outputs = { self, nixpkgs }:

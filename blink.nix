@@ -5,12 +5,12 @@ with python3.pkgs;
 mkDerivationWith buildPythonApplication rec {
 
   pname = "blink";
-  version = "5.1.7";
+  version = "5.2.0";
 
   src = fetchdarcs {
     url = "http://devel.ag-projects.com/repositories/blink-qt";
     rev = version;
-    sha256 = "sha256-vwUfGfrphEssEceTxkMKSaZkobuZM5o/cLeYMuf9h0U=";
+    sha256 = "sha256-7ux02ztJlRv1QsnC9YNZ5ay7Ayjl19a4N/dgeRB6v6o=";
   };
 
   propagatedBuildInputs = [
@@ -19,6 +19,7 @@ mkDerivationWith buildPythonApplication rec {
     python3-eventlib
     python3-sipsimple
     google-api-python-client
+    sqlobject
   ];
 
   nativeBuildInputs = [
@@ -50,12 +51,12 @@ mkDerivationWith buildPythonApplication rec {
     desktopName = "Blink";
     genericName = "SIP client";
     comment = meta.description;
-    extraDesktopEntries = { X-GNOME-FullName = "Blink SIP client"; };
+    extraConfig = { X-GNOME-FullName = "Blink SIP client"; };
     exec = "blink";
     icon = "blink";
     startupNotify = false;
     terminal = false;
-    categories = "Qt;Network;Telephony";
+    categories = [ "Qt" "Network" "Telephony" ];
   }) ];
 
   meta = with lib; {
